@@ -1,0 +1,7 @@
+{
+  "name": "parigolade",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

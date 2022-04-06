@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">
+      Parigolade
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item color="tertiary" *ngFor="let bet of bets" (click)="openBet(bet)">
+      <ion-label>
+        {{ bet.title }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addBet()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

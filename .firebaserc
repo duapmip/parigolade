@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "parigolade": {
+      "hosting": {
+        "app": [
+          "parigolade"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "parigolade"
+  }
+}
