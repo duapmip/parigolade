@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
+import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -12,11 +14,22 @@ export class HomePage {
 
   bets = [];
 
-  constructor(private dataService: DataService, private alertCtrl: AlertController, private modalCtrl: ModalController) {
+  constructor(
+    private dataService: DataService, 
+    private alertCtrl: AlertController, 
+    private modalCtrl: ModalController,
+    private authService: AuthService,
+    private router: Router
+    ) {
     this.dataService.getBet().subscribe(res => {
       console.log(res);
       this.bets = res;
     });
+  }
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/', {replaceUrl: true})
   }
 
   async openBet(bet) {
