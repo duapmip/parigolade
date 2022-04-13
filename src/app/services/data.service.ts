@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '@angular/fire/auth';
 import { collectionData, docData, Firestore, doc, deleteDoc} from '@angular/fire/firestore';
 import { addDoc, collection, updateDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
@@ -7,6 +8,15 @@ export interface Bet {
   id?: string;
   title: string;
   betNumber: number;
+  set: number;
+  choices: string[];
+}
+
+export interface League {
+  idLeague?: string;
+  titleLeague: string;
+  bets: Bet[];
+  admin: User;
 }
 
 
@@ -39,6 +49,26 @@ export class DataService {
 
   updateBet(bet: Bet) {
     const betDocRef = doc(this.firestore, `bets/${bet.id}`);
-    return updateDoc(betDocRef, {title: bet.title, betNumber: bet.betNumber})
+    return updateDoc(betDocRef, {title: bet.title, betNumber: bet.betNumber, set: bet.set, choices: bet.choices})
+  }
+
+  getLeague(): Observable<League[]> {
+    const leagueRef = collection(this.firestore, 'leagues');
+    return collectionData(leagueRef, {idField: 'idLeague'}) as Observable<League[]>;
+  }
+
+  getLeagueById(idLeague): Observable<League> {
+    const leagueDocRef = doc(this.firestore, `leagues/${idLeague}`);
+    return docData(leagueDocRef, {idField: 'idLeague'}) as Observable<League>;
+  }
+
+  addLeague(league: League) {
+    const leaguesRef = collection(this.firestore, 'leagues');
+    return addDoc(leaguesRef, league);
+  }
+
+  deleteLeague(league: League) {
+    const leagueDocRef = doc(this.firestore, `leagues/${league.idLeague}`);
+    return deleteDoc(leagueDocRef)
   }
 }

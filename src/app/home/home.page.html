@@ -20,9 +20,23 @@
     </ion-item>
   </ion-list>
 
+  <ion-list>
+    <ion-item color="secondary" *ngFor="let league of leagues" (click)="openLeague(league)">
+      <ion-label>
+        {{ league.titleLeague }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addBet()">
       <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="addLeague()">
+      <ion-icon name="add" color="danger"d></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

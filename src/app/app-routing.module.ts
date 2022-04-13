@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import { IntroGuard } from './guards/intro.guard';
+import { AutoLoginGuard } from './guards/auto-login.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
@@ -8,9 +11,14 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    ...canActivate(redirectLoggedInToHome)
+    canLoad: [IntroGuard, AutoLoginGuard]
+  },
+  {
+    path: 'tablinks',
+    loadChildren: () => import('./tablinks/tablinks.module').then( m => m.TablinksPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'home',
@@ -21,6 +29,23 @@ const routes: Routes = [
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   },
+  {
+    path: 'championship',
+    loadChildren: () => import('./championship/championship.module').then( m => m.ChampionshipPageModule)
+  },
+  {
+    path: 'league',
+    loadChildren: () => import('./league/league.module').then( m => m.LeaguePageModule)
+  },
+  {
+    path: 'intro',
+    loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
+  },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

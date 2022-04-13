@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     const user = await this.authService.register(this.credentials.value);
     await loading.dismiss();
     if (user) {
-      this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('tablinks/tablinks/home', { replaceUrl: true });
     } else {
       this.showAlert('Registration failed', 'Please try again');
     }
@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
     const user = await this.authService.login(this.credentials.value);
     await loading.dismiss();
     if (user) {
-      this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('tablinks/tablinks/home', { replaceUrl: true });
     } else {
       this.showAlert('Login failed', 'Please try again');
     }

@@ -15,11 +15,23 @@
     <ion-item>
       <ion-label position="stacked">Bet number
       </ion-label>
-      <ion-textarea [(ngModel)]="bet.betNumber" rows="8"></ion-textarea>
+      <ion-textarea [(ngModel)]="bet.betNumber" rows="1"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Set
+      </ion-label>
+      <ion-textarea [(ngModel)]="bet.set" rows="1"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Choices
+      </ion-label>
+      <ion-textarea [(ngModel)]="bet.choices" rows="1"></ion-textarea>
     </ion-item>
   </div>
 
-  <ion-button expand="block" color="success" (click)="updateBet()">
+  <ion-button expand="block" color="tertiary" (click)="updateBet()">
     <ion-icon name="save" slot="start"></ion-icon>
     Update
   </ion-button>
