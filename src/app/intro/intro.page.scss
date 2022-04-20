@@ -1,7 +1,7 @@
-.ion-slides {
-    background-color: green;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+ion-content {
+    --background: rgb(215, 215, 215);
+}
+
+ion-slides {
     height: 100%;
 }

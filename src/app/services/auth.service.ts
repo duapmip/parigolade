@@ -1,14 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@firebase/auth';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: Auth) { }
+  authState = new BehaviorSubject(false);
 
+  constructor(
+    private auth: Auth, 
+    ) { }
+
+   isAuthenticated() {
+     return this.authState.value;
+   }
+
+  
   async register({ email, password}) {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -29,6 +41,7 @@ export class AuthService {
         email, 
         password
       );
+      this.authState.next(true);
       return user;
     } catch (e) {
       return null;

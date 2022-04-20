@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Router} from '@angular/router';
+import { CanActivate, CanLoad, Router} from '@angular/router';
 
 export const INTRO_KEY = 'intro-seen';
 import { Storage } from '@capacitor/storage';
@@ -7,10 +7,10 @@ import { Storage } from '@capacitor/storage';
 @Injectable({
   providedIn: 'root'
 })
-export class IntroGuard implements CanLoad {
+export class IntroGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  async canLoad() : Promise<boolean> {
+  async canActivate() : Promise<boolean> {
     const hasSeenIntro = await Storage.get({key: INTRO_KEY})
 
     if (hasSeenIntro && (hasSeenIntro.value === 'true')) {
