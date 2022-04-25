@@ -28,6 +28,7 @@ export class AuthService {
         email, 
         password
       );
+      this.authState.next(true);
       return user;
     } catch (e) {
       return null;

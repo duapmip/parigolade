@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
-import { present } from '@ionic/core/dist/types/utils/overlays';
 import { ModalPage } from '../modal/modal.page';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
@@ -14,7 +13,6 @@ import { DataService } from '../services/data.service';
 export class HomePage {
 
   bets = [];
-  leagues= [];
 
   constructor(
     private dataService: DataService, 
@@ -26,9 +24,6 @@ export class HomePage {
     this.dataService.getBet().subscribe(res => {
       this.bets = res;
     });
-    this.dataService.getLeague().subscribe(res => {
-      this.leagues = res;
-    })
   }
 
   async logout() {
@@ -46,38 +41,28 @@ export class HomePage {
     modal.present();
   }
 
-  async openLeague(league) {
-    const modal = await this.modalCtrl.create({
-      component: ModalPage,
-      componentProps: { id: league.idLeague },
-      breakpoints: [0, 0.5, 0.8],
-      initialBreakpoint: 0.5
-    });
-    modal.present();
-  }
-
   async addBet() {
     const alert = await this.alertCtrl.create({
       header: 'Add Bet',
       inputs: [
         {
           name:'title',
-          placeholder: 'My cool bet',
+          placeholder: 'Nom de mon pari',
           type: 'text'
         },
         {
           name: 'betNumber',
-          placeholder: 'How much risk you are ready to take',
-          type: 'textarea'
+          placeholder: 'Cote',
+          type: 'number'
         },
         {
           name: 'set',
-          placeholder: 'Set',
-          type: 'textarea'
+          placeholder: 'Mise',
+          type: 'number'
         },
         {
           name: 'choices',
-          placeholder: 'choices',
+          placeholder: 'Les choix (choix 1, choix 2, choix 3, etc)',
           type: 'textarea'
         }
       ],
@@ -89,44 +74,7 @@ export class HomePage {
         {
           text: 'Add',
           handler: (res) => {
-            this.dataService.addBet({title : res.title, betNumber: res.betNumber, set: res.choices, choices: res.choices});
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
-
-  async addLeague() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add League',
-      inputs: [
-        {
-          name:'titleLeague',
-          placeholder: 'title league',
-          type: 'text'
-        },
-        {
-          name: 'bets',
-          placeholder: 'bets',
-          type: 'textarea'
-        },
-        {
-          name: 'admin',
-          placeholder: 'Admin',
-          type: 'textarea'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Add',
-          handler: (res) => {
-            this.dataService.addLeague({titleLeague : res.titleLeague, bets: res.bets, admin : res.admin});
+            this.dataService.addBet({title : res.title, betNumber: res.betNumber, set: res.set, choices: res.choices});
           }
         }
       ]

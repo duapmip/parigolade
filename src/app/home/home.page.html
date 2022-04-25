@@ -11,32 +11,40 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
   <ion-list>
     <ion-item color="tertiary" *ngFor="let bet of bets" (click)="openBet(bet)">
-      <ion-label>
-        {{ bet.title }}
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item color="secondary" *ngFor="let league of leagues" (click)="openLeague(league)">
-      <ion-label>
-        {{ league.titleLeague }}
-      </ion-label>
+      <ion-grid>
+        <ion-row>
+        <ion-label style="white-space: pre-wrap">
+          {{ bet.title }}
+        </ion-label>
+        </ion-row>
+        <ion-row >
+          <ion-col class="items" col-4 *ngFor="let item of bet.choices.split(',')" >
+            {{item}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-align-self-start">
+            Cote : 
+            {{ bet.betNumber}}
+          </ion-col> 
+          <ion-col class="ion-align-self-end">
+            Mise : 
+            {{ bet.set }}
+          </ion-col>          
+        </ion-row>
+    </ion-grid>
     </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addBet()">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button color="light" (click)="addBet()">
+      <ion-icon name="add" color="tertiary" ></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="addLeague()">
-      <ion-icon name="add" color="danger"d></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

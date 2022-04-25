@@ -26,3 +26,35 @@
   text-decoration: none;
 }
 
+ion-item{
+  line-height: 200%;
+  padding-bottom: 1%;
+}
+
+
+
+ion-col{
+  color:#f7f7f7;
+  margin:2%;
+  border-radius: 2%;
+  text-align: center;
+  line-height: 100%;
+}
+
+.items{
+  background-color: #f7f7f7;
+  color: rgb(82,96,255);
+  margin:2%;
+  border-radius: 2%;
+  text-align: center;
+  line-height: 100%;
+}
+
+:root {
+  --ion-color-light: #f7f7f7;
+	--ion-color-light-rgb: 247,247,247;
+	--ion-color-light-contrast: #000000;
+	--ion-color-light-contrast-rgb: 0,0,0;
+	--ion-color-light-shade: #d9d9d9;
+	--ion-color-light-tint: #f8f8f8;
+}

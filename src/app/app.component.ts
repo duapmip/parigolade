@@ -28,9 +28,9 @@ export class AppComponent {
 
       this.authService.authState.subscribe(state => {
         if (state) {
-          this.router.navigate(['tablinks']);
+          this.router.navigate(['/tablinks']);
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(['/login']);
         }
       });
 
