@@ -10,13 +10,15 @@ export interface Bet {
   betNumber: number;
   set: number;
   choices: string[];
+  league: League;
 }
 
 export interface League {
   idLeague?: string;
   titleLeague: string;
   bets: Bet[];
-  admin: User;
+  admin: string;
+  participantsNumber: number;
 }
 
 
@@ -26,6 +28,9 @@ export interface League {
 export class DataService {
 
   constructor(private firestore: Firestore) { }
+
+
+  // general function to get and add bet and league in all the app
 
   getBet(): Observable<Bet[]> {
     const betRef = collection(this.firestore, 'bets');
@@ -40,16 +45,6 @@ export class DataService {
   addBet(bet: Bet) {
     const betsRef = collection(this.firestore, 'bets');
     return addDoc(betsRef, bet);
-  }
-
-  deleteBet(bet: Bet) {
-    const betDocRef = doc(this.firestore, `bets/${bet.id}`);
-    return deleteDoc(betDocRef)
-  }
-
-  updateBet(bet: Bet) {
-    const betDocRef = doc(this.firestore, `bets/${bet.id}`);
-    return updateDoc(betDocRef, {title: bet.title, betNumber: bet.betNumber, set: bet.set, choices: bet.choices})
   }
 
   getLeague(): Observable<League[]> {
@@ -67,8 +62,25 @@ export class DataService {
     return addDoc(leaguesRef, league);
   }
 
-  deleteLeague(league: League) {
-    const leagueDocRef = doc(this.firestore, `leagues/${league.idLeague}`);
-    return deleteDoc(leagueDocRef)
-  }
+  // those 4 functions will be usefull when administrator's authorization will be develop
+
+  // deleteBet(bet: Bet) {
+  //   const betDocRef = doc(this.firestore, `bets/${bet.id}`);
+  //   return deleteDoc(betDocRef)
+  // }
+
+  // updateBet(bet: Bet) {
+  //   const betDocRef = doc(this.firestore, `bets/${bet.id}`);
+  //   return updateDoc(betDocRef, {title: bet.title, betNumber: bet.betNumber, set: bet.set, choices: bet.choices, league: bet.league})
+  // }
+
+  // deleteLeague(league: League) {
+  //   const leagueDocRef = doc(this.firestore, `leagues/${league.idLeague}`);
+  //   return deleteDoc(leagueDocRef)
+  // }
+
+  // updateLeague(bet: Bet) {
+  //   const betDocRef = doc(this.firestore, `bets/${bet.id}`);
+  //   return updateDoc(betDocRef, {title: bet.title, betNumber: bet.betNumber, set: bet.set, choices: bet.choices, league: bet.league})
+  // }
 }

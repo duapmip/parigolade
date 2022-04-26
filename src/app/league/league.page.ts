@@ -31,15 +31,28 @@ export class LeaguePage {
     this.router.navigateByUrl('/', {replaceUrl: true})
   }
 
-  async openLeague(league) {
-    const modal = await this.modalCtrl.create({
-      component: ModalPage,
-      componentProps: { id: league.idLeague },
-      breakpoints: [0, 0.5, 0.8],
-      initialBreakpoint: 0.5
-    });
-    modal.present();
-  }
+  // async openLeague(league) {
+  //   const modal = await this.modalCtrl.create({
+  //     component: ModalPage,
+  //     componentProps: { id: league.idLeague },
+  //     breakpoints: [0, 0.5, 0.8],
+  //     initialBreakpoint: 0.5
+  //   });
+  //   modal.present();
+  // }
+  
+  // async recupBet(league) {
+  //   var bets;
+  //   this.dataService.getBet().subscribe(res => {
+  //     bets = res;
+  //     if (bets.league == league){
+  //       return bets;
+  //     }
+  //     else{
+  //       return false;
+  //     }
+  //   });
+  // }
 
   async addLeague() {
     const alert = await this.alertCtrl.create({
@@ -47,18 +60,8 @@ export class LeaguePage {
       inputs: [
         {
           name:'titleLeague',
-          placeholder: 'title league',
+          placeholder: 'Titre de la ligue',
           type: 'text'
-        },
-        {
-          name: 'bets',
-          placeholder: 'bets',
-          type: 'textarea'
-        },
-        {
-          name: 'admin',
-          placeholder: 'Admin',
-          type: 'textarea'
         },
       ],
       buttons: [
@@ -69,7 +72,7 @@ export class LeaguePage {
         {
           text: 'Add',
           handler: (res) => {
-            this.dataService.addLeague({titleLeague : res.titleLeague, bets: res.bets, admin : res.admin});
+            this.dataService.addLeague({titleLeague : res.titleLeague, bets: null, admin : this.authService.getUser(), participantsNumber: 1});
           }
         }
       ]

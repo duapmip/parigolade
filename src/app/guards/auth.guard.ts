@@ -11,6 +11,8 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  
+  //this guard is used to authorized only user alreday logged in to access to the app different pages
 
   constructor(
     public router: Router,

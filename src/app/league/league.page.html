@@ -13,16 +13,32 @@
 
 <ion-content>
   <ion-list>
-    <ion-item color="tertiary" *ngFor="let league of leagues" (click)="openLeague(league)">
-      <ion-label>
-        {{ league.titleLeague }}
-      </ion-label>
+    <ion-item color="tertiary" *ngFor="let league of leagues">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="title">
+            {{ league.titleLeague }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col color="light">
+            Nombre de participants : 
+            {{ league.participantsNumber }}
+          </ion-col>     
+        </ion-row>
+        <ion-row>
+          <ion-col color="light">
+            Administrateur : 
+            {{ league.admin }}
+          </ion-col>     
+        </ion-row>        
+      </ion-grid>
     </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addLeague()">
-      <ion-icon name="add" ></ion-icon>
+    <ion-fab-button color="light" (click)="addLeague()">
+      <ion-icon name="add" color="tertiary" ></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

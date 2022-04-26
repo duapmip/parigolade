@@ -17,11 +17,18 @@ export class AuthService {
     ) { }
 
    isAuthenticated() {
+    //  verify if the user is authenticated
      return this.authState.value;
+   }
+
+   getUser() {
+    //  get the user currently logged in
+     return this.auth.currentUser.email.split('@')[0];
    }
 
   
   async register({ email, password}) {
+    // function to register as a new user
     try {
       const user = await createUserWithEmailAndPassword(
         this.auth, 
@@ -36,6 +43,7 @@ export class AuthService {
   }
 
   async login({ email, password }) {
+    // function to login as a user
     try {
       const user = await signInWithEmailAndPassword(
         this.auth, 
@@ -50,6 +58,7 @@ export class AuthService {
   }
 
   logout() {
+    // function to log out as a user
     return signOut(this.auth);
   }
 }

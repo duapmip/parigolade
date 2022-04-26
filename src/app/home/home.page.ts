@@ -32,11 +32,12 @@ export class HomePage {
   }
 
   async openBet(bet) {
+    // function to open details on  a bet
     const modal = await this.modalCtrl.create({
       component: ModalPage,
       componentProps: { id: bet.id },
-      breakpoints: [0, 0.5, 0.8],
-      initialBreakpoint: 0.5
+      breakpoints: [0, 0.38, 0.6],
+      initialBreakpoint: 0.38
     });
     modal.present();
   }
@@ -64,6 +65,11 @@ export class HomePage {
           name: 'choices',
           placeholder: 'Les choix (choix 1, choix 2, choix 3, etc)',
           type: 'textarea'
+        },
+        {
+          name: 'league',
+          placeholder: 'La ligue du pari',
+          type: 'textarea'
         }
       ],
       buttons: [
@@ -74,7 +80,9 @@ export class HomePage {
         {
           text: 'Add',
           handler: (res) => {
-            this.dataService.addBet({title : res.title, betNumber: res.betNumber, set: res.set, choices: res.choices});
+            this.dataService.addBet({title : res.title, betNumber: res.betNumber, set: res.set, choices: res.choices, league: res.league});
+            // trying to update the league when adding new bet
+            // this.dataService.updateLeague({bets.Add})
           }
         }
       ]

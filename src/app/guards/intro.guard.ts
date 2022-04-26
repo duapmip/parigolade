@@ -8,6 +8,9 @@ import { Storage } from '@capacitor/storage';
   providedIn: 'root'
 })
 export class IntroGuard implements CanActivate {
+
+  // this guard is used to control whether the user have already seen the intro page. If not, it shows the intro page, else it redirects to the login page.
+
   constructor(private router: Router) {}
 
   async canActivate() : Promise<boolean> {

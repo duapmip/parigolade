@@ -3,23 +3,31 @@
  
     <!-- Slide 1 -->
     <ion-slide>
-      <div style="justify-content: center; align-items: center;">
+      <div>
         <ion-text>
           <img style="padding: 5%;" src="../../assets/images/parigoladeSF.png">
-          <h1>Salut à toi petit filou</h1>
-          <p>Rejoins nous et paries sur la victoire de TuTur et Maximerde au tournoi de Spike Ball </p>
-          <ion-button (click)="next()" fill="outline" color="tertiary">Next</ion-button>
+          <div class="intro">
+            <h1>Salut à toi</h1>
+            <p>Rejoins nous et lances toi dans une aventure plein de rebondissement avec tes collègues, tes amis, ta famille ou encore le monde entier</p>
+            <ion-button (click)="next()" fill="outline" color="light">Suivant</ion-button>
+          </div>
         </ion-text>
       </div>
     </ion-slide>
  
     <!-- Slide 2 -->
     <ion-slide>
-      <ion-text>
-        <h1>It's Ionic!</h1>
-        <p>... it shows all the basics you need!</p>
-        <ion-button (click)="start()" fill="outline" color="tertiary">Start</ion-button>
-      </ion-text>
+      <div>
+        <ion-text>
+          <img style="padding: 5%;" src="../../assets/images/parigoladeSF.png">
+          <div class="intro">
+            <p>Créer le pari ou la ligue de ton choix, ici tu es libre de laisser cours à ton imagination</p>
+            <p>Si tu n'est pas du genre créatif, ne t'inquiète pas et laisses toi tenter par les ligues et paris déjà existants</p>
+            <p>Amuses-toi bien</p>
+            <ion-button (click)="start()" fill="outline" color="light">Commencer</ion-button>
+          </div>
+        </ion-text>
+      </div>
     </ion-slide>
  
   </ion-slides>

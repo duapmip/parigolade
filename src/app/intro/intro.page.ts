@@ -23,6 +23,7 @@ export class IntroPage implements OnInit {
   }
 
   async start() {
+    // function to look if the user uses the app for the first time or not. If it is the first time then the intro is displayed.
     await Storage.set({key: INTRO_KEY, value: 'true'});
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
