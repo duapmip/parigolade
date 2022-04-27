@@ -28,7 +28,7 @@ export class HomePage {
 
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl('/', {replaceUrl: true})
+    this.router.navigateByUrl('/login', {replaceUrl: true})
   }
 
   async openBet(bet) {

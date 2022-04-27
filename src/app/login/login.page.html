@@ -11,17 +11,17 @@
 
     <ion-item fill="solid" class="ion-margin-bottom">
       <ion-input type="email" placeholder="Email" formControlName="email"></ion-input >
-      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email invalide</ion-note>
     </ion-item>
 
     <ion-item fill="solid" class="ion-margin-bottom">
-      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input >
-      <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6 characters</ion-note>
+      <ion-input type="password" placeholder="Mot de passe" formControlName="password"></ion-input >
+      <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Le mot de passe doit faire 6 caractères minimum</ion-note>
     </ion-item>
     
 
-    <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
-    <ion-button expand="full" type="button" (click)="register()">Create account</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Se connecter</ion-button>
+    <ion-button expand="full" type="button" (click)="register()">Créer un compte</ion-button>
 
     
   </form>
